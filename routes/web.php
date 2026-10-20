@@ -3,6 +3,7 @@
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoomController;
 
 Route::get('/', fn () => redirect()->route('catalog.index'));
 
@@ -20,3 +21,4 @@ Route::post('/feedback', [PageController::class, 'feedbackSend'])->name('feedbac
 Route::get('/hello/{name?}', function (string $name = 'гость') {
     return "Привет, {$name}!";
 })->where('name', '\p{L}+');
+Route::resource('rooms', RoomController::class)->except(['show']);
